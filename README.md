@@ -1,2 +1,5 @@
 # Overview
-NTrack is an open-source Steam application for coders and other various creators to modify into configurable games.
+Ntrack is(Will be) a semi-Open source framework to allow for easily programable game servers with customizable game modes and ingame elements.
+
+# In The Future
+We would like to get this accepted into steams stores when it's ready but for now it lurks in the shadows.

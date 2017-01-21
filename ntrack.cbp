@@ -35,6 +35,8 @@
 		<Linker>
 			<Add library="Libs\irrlicht-1.8.4\lib\Win32-gcc\libIrrlicht.a" />
 		</Linker>
+		<Unit filename="SettingsManager.cpp" />
+		<Unit filename="SettingsManager.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

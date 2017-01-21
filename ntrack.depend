@@ -992,13 +992,13 @@
 	"matrix4.h"
 	"IVideoDriver.h"
 
-1484986754 c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.h
+1484990243 c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.h
 	<irrlicht.h>
 
 1484987933 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
 	"SettingsManager.h"
 
-1484989247 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
+1484990230 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
 	<irrlicht.h>
 	"SettingsManager.h"
 

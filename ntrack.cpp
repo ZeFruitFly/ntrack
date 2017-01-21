@@ -9,7 +9,7 @@ ntrack::ntrack(int argc, char *argv[])
 			{
 				if(strcmp("-D", argv[i]) == 0)
 				{
-                    mgr.dedicatedServer = true; //Make sure to store this for later.
+                    mgr->dedicatedServer = true; //Make sure to store this for later.
 				}
 
 			}

@@ -19,8 +19,7 @@ class SettingsManager
 
         void saveSettings();
         void loadSettings(stringw);
-    protected:
-    private:
+
         int driver, screen_h, screen_w;
         bool fullscreen, dedicatedServer;
 };

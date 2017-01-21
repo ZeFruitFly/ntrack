@@ -8,7 +8,7 @@ using namespace video;
 using namespace gui;
 using namespace quake3;
 
-int main(int argc, char argv[])
+int main(int argc, char *argv[])
 {
     return 0;
 }

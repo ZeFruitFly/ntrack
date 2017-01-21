@@ -995,13 +995,13 @@
 1484991246 c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.h
 	<irrlicht.h>
 
-1484987933 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
+1484994693 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
 	"SettingsManager.h"
 
-1484990230 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
+1484995022 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
 	<irrlicht.h>
 	"SettingsManager.h"
 
-1484991616 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
+1484995088 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
 	"ntrack.h"
 

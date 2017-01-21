@@ -18,10 +18,15 @@ class ntrack
     public:
         ntrack(int argc, char *argv[]);
         virtual ~ntrack();
+
+        void run();
     protected:
     private:
         SettingsManager *mgr = NULL;
         IrrlichtDevice *logic = NULL, *controll = NULL, *game = NULL;
+        IVideoDriver *driver = NULL;
+        ISceneManager *smgr = NULL;
+        IGUIEnvironment *guienv = NULL;
 };
 
 #endif // NTRACK_H

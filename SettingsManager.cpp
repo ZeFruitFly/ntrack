@@ -47,7 +47,7 @@ SettingsManager::SettingsManager(stringw settingsFile)
                             break;
                         }
                     }else{
-                        drvType = EDT_BURNINGSVIDEO;
+                        drvType = EDT_SOFTWARE;
                     }
                     screen_w = settingsReader->getAttributeValueAsInt(L"width");//width=???
                     screen_h = settingsReader->getAttributeValueAsInt(L"height");//height=???

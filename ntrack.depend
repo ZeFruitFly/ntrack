@@ -998,10 +998,17 @@
 1484994693 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
 	"SettingsManager.h"
 
-1484995022 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
+1485003625 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
 	<irrlicht.h>
 	"SettingsManager.h"
+	"EventReceiver.h"
 
-1484995088 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
+1485007496 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
 	"ntrack.h"
+
+1484996914 c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.h
+	<Irrlicht.h>
+
+1484996860 source:c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.cpp
+	"EventReceiver.h"
 

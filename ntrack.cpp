@@ -40,8 +40,21 @@ ntrack::~ntrack()
     //dtor
 }
 
+
+//Build the gui for our connection window
+void ntrack::buildConnectWindow()
+{
+    IGUIWindow *theWin = guienv->addWindow(rect<s32>(40,20,250,140), false, L"Connect", 0, GUI_ID_CONNECT_WINDOW);
+    guienv->addEditBox(L"",rect<s32>(90,30,190,50), false, theWin, GUI_ID_IP_TEXTBOX);
+    guienv->addEditBox(L"",rect<s32>(90, 55, 190, 75), false,theWin, GUI_ID_PORT_TEXTBOX);
+    guienv->addStaticText(L"Port: ",rect<s32>(10,55,80,75), false, false, theWin, 0, false);
+    guienv->addStaticText(L"IP Address: ",rect<s32>(10,30,80,50), false, false, theWin, 0, false);
+    guienv->addButton(rect<s32>(10, 80, 80, 100), theWin, 0 ,L"Connect");
+}
+
 void ntrack::run()
 {
+    buildConnectWindow();
     while(game->run())
     {
         driver->beginScene(true, true, SColor(255,0,0,0));
@@ -49,4 +62,5 @@ void ntrack::run()
         guienv->drawAll();
         driver->endScene();
     }
+    game->drop();
 }

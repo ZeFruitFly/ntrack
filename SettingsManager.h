@@ -20,8 +20,9 @@ class SettingsManager
         void saveSettings();
         void loadSettings(stringw);
 
-        int driver, screen_h, screen_w;
+        int screen_h, screen_w;
         bool fullscreen, dedicatedServer;
+        E_DRIVER_TYPE drvType;
 };
 
 #endif // SETTINGSMANAGER_H

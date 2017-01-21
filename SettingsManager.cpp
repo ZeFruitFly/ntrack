@@ -27,12 +27,27 @@ SettingsManager::SettingsManager(stringw settingsFile)
                 if(displaySettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=display
                 {
                     //We gather our display settings here.
-                    driver = settingsReader->getAttributeValueAsInt(L"driver");//driver=???
-                    if(driver == 0)
+                    int driver = settingsReader->getAttributeValueAsInt(L"driver");//driver=???
+                    if((driver != 0) && (driver < 5))
                     {
-                        //Driver settings 1 = Software(default), 2 = OpenGL, 3 = DirectX9, 4 = burning.
-                        driver = 1;
-
+                        //Driver settings 1 = Software, 2 = OpenGL, 3 = DirectX9, 4 = burning(default).
+                        switch(driver)
+                        {
+                        case 1:
+                            drvType = EDT_SOFTWARE;
+                            break;
+                        case 2:
+                            drvType = EDT_OPENGL;
+                            break;
+                        case 3:
+                            drvType = EDT_DIRECT3D9;
+                            break;
+                        case 4:
+                            drvType = EDT_BURNINGSVIDEO;
+                            break;
+                        }
+                    }else{
+                        drvType = EDT_BURNINGSVIDEO;
                     }
                     screen_w = settingsReader->getAttributeValueAsInt(L"width");//width=???
                     screen_h = settingsReader->getAttributeValueAsInt(L"height");//height=???
@@ -65,6 +80,10 @@ SettingsManager::SettingsManager(stringw settingsFile)
             break;
         }
     }
+
+    //Free up memory
+    settingsReader->drop();
+    tempDevice->drop();
 
 }
 

@@ -1,6 +1,8 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
+#include <irrlicht.h>
+
 using namespace irr;
 using namespace core;
 using namespace video;
@@ -14,8 +16,13 @@ class SettingsManager
     public:
         SettingsManager(stringw);
         virtual ~SettingsManager();
+
+        void saveSettings();
+        void loadSettings(stringw);
     protected:
     private:
+        int driver, screen_h, screen_w;
+        bool fullscreen, dedicatedServer;
 };
 
 #endif // SETTINGSMANAGER_H

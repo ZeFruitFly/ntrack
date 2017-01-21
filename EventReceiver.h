@@ -16,6 +16,7 @@ class EventReceiver : public IEventReceiver
     public:
         EventReceiver();
         virtual ~EventReceiver();
+        virtual bool OnEvent(SEvent);
     protected:
     private:
 };

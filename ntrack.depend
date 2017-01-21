@@ -998,17 +998,62 @@
 1484994693 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
 	"SettingsManager.h"
 
-1485003625 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
+1485010770 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
 	<irrlicht.h>
+	<netClient.h>
+	<netServer.h>
 	"SettingsManager.h"
 	"EventReceiver.h"
 
-1485007496 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
+1485007567 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
 	"ntrack.h"
 
-1484996914 c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.h
+1485011071 c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.h
 	<Irrlicht.h>
 
 1484996860 source:c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.cpp
 	"EventReceiver.h"
+
+1484017445 c:\users\nathan\documents\github\virtuedev\ntrack\libs\netlib\include\netclient.h
+	<iostream>
+	<map>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/fcntl.h>
+	<netinet/in.h>
+	"packet.hpp"
+	"globalExceptions.hpp"
+
+1484017445 c:\users\nathan\documents\github\virtuedev\ntrack\libs\netlib\include\packet.hpp
+	<string>
+	<cstring>
+
+1484017445 c:\users\nathan\documents\github\virtuedev\ntrack\libs\netlib\include\globalexceptions.hpp
+	<exception>
+
+1484017445 c:\users\nathan\documents\github\virtuedev\ntrack\libs\netlib\include\netserver.h
+	<iostream>
+	<chrono>
+	<map>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/fcntl.h>
+	<netinet/in.h>
+	"TargetConditionals.h"
+	"packet.hpp"
+	"globalExceptions.hpp"
 

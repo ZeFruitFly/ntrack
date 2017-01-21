@@ -2,7 +2,8 @@
 #define NTRACK_H
 
 #include <irrlicht.h>
-
+#include <netClient.h>
+#include <netServer.h>
 using namespace irr;
 using namespace core;
 using namespace video;
@@ -32,6 +33,10 @@ class ntrack
         IVideoDriver *driver = NULL;
         ISceneManager *smgr = NULL;
         IGUIEnvironment *guienv = NULL;
+
+        //Network stuff
+        netClient *clientCon = NULL;
+        netServer *serverCon = NULL;
 
         //GUI Stuff
         enum

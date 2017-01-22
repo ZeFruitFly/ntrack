@@ -34,17 +34,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=gnu++11" />
+			<Add option="-static" />
 			<Add directory="Libs/irrlicht-1.8.4/include" />
 			<Add directory="Libs/netLib/include" />
 		</Compiler>
 		<Linker>
 			<Add library="Libs\irrlicht-1.8.4\lib\Win32-gcc\libIrrlicht.a" />
 		</Linker>
-		<Unit filename="SettingsManager.cpp" />
-		<Unit filename="SettingsManager.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="ntrack.cpp" />
-		<Unit filename="ntrack.h" />
+		<Unit filename="src/SettingsManager.cpp" />
+		<Unit filename="src/SettingsManager.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/ntrack.cpp" />
+		<Unit filename="src/ntrack.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

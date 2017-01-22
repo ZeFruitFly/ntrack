@@ -13,15 +13,16 @@ using namespace io;
 using namespace quake3;
 
 #include "SettingsManager.h"
-#include "EventReceiver.h"
 
 /* This class is the hub of all activity lua will be initialized here,
 as will settings, client/server connections etc. */
-class ntrack
+class ntrack : public IEventReceiver
 {
     public:
         ntrack(int argc, char *argv[]);
         virtual ~ntrack();
+
+        virtual bool OnEvent(const SEvent&);
 
         void buildConnectWindow();
 
@@ -33,6 +34,8 @@ class ntrack
         IVideoDriver *driver = NULL;
         ISceneManager *smgr = NULL;
         IGUIEnvironment *guienv = NULL;
+
+
 
         //Network stuff
         netClient *clientCon = NULL;

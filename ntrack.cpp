@@ -23,7 +23,7 @@ ntrack::ntrack(int argc, char *argv[])
 
 			}
     }
-    game = createDevice(mgr->drvType, dimension2d<u32>(mgr->screen_w, mgr->screen_h), 16, mgr->fullscreen);
+    game = createDevice(mgr->drvType, dimension2d<u32>(mgr->screen_w, mgr->screen_h), 16, mgr->fullscreen, false, true, this);
     if(game == NULL)
     {
         //Device creation failed
@@ -40,6 +40,10 @@ ntrack::~ntrack()
     //dtor
 }
 
+bool ntrack::OnEvent(const SEvent& event)
+{
+    return false;
+}
 
 //Build the gui for our connection window
 void ntrack::buildConnectWindow()

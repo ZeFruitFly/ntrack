@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1484989616 source:c:\users\nathan\documents\github\virtuedev\ntrack\main.cpp
+1485028637 source:c:\users\nathan\documents\github\virtuedev\ntrack\main.cpp
 	<irrlicht.h>
 	"SettingsManager.h"
 	"ntrack.h"
@@ -998,20 +998,20 @@
 1484994693 source:c:\users\nathan\documents\github\virtuedev\ntrack\settingsmanager.cpp
 	"SettingsManager.h"
 
-1485010770 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
+1485105857 c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.h
 	<irrlicht.h>
 	<netClient.h>
 	<netServer.h>
 	"SettingsManager.h"
-	"EventReceiver.h"
 
-1485007567 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
+1485105681 source:c:\users\nathan\documents\github\virtuedev\ntrack\ntrack.cpp
 	"ntrack.h"
 
-1485011071 c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.h
+1485104613 c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.h
 	<Irrlicht.h>
+	"ntrack.h"
 
-1484996860 source:c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.cpp
+1485102541 source:c:\users\nathan\documents\github\virtuedev\ntrack\eventreceiver.cpp
 	"EventReceiver.h"
 
 1484017445 c:\users\nathan\documents\github\virtuedev\ntrack\libs\netlib\include\netclient.h

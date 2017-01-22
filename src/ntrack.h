@@ -27,6 +27,10 @@ class ntrack : public IEventReceiver
         void buildConnectWindow();
 
         void run();
+
+        //Called when a corresponding event has been triggered.
+        void onButtonClicked(IGUIButton *);
+        void onMenuItemSelected(IGUIContextMenu *);
     protected:
     private:
         SettingsManager *mgr = NULL;

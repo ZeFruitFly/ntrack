@@ -11,6 +11,11 @@ using namespace quake3;
 
 int main(int argc, char *argv[])
 {
-    ntrack *gm = new ntrack(argc, argv);
+    try{
+        ntrack *gm = new ntrack(argc, argv);
+    }catch(const char* error)
+    {
+
+    }
     return 0;
 }

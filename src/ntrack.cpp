@@ -48,6 +48,7 @@ bool ntrack::OnEvent(const SEvent& event)
         {
         case EGET_BUTTON_CLICKED:
             //A button has been clicked
+            onButtonClicked((IGUIButton*)event.GUIEvent.Caller);
             break;
         }
     }else if(event.EventType == EET_JOYSTICK_INPUT_EVENT)
@@ -72,12 +73,48 @@ bool ntrack::OnEvent(const SEvent& event)
 //Build the gui for our connection window
 void ntrack::buildConnectWindow()
 {
-    IGUIWindow *theWin = guienv->addWindow(rect<s32>(40,20,250,140), false, L"Connect", 0, GUI_ID_CONNECT_WINDOW);
-    guienv->addEditBox(L"",rect<s32>(90,30,190,50), false, theWin, GUI_ID_IP_TEXTBOX);
-    guienv->addEditBox(L"",rect<s32>(90, 55, 190, 75), false,theWin, GUI_ID_PORT_TEXTBOX);
-    guienv->addStaticText(L"Port: ",rect<s32>(10,55,80,75), false, false, theWin, 0, false);
-    guienv->addStaticText(L"IP Address: ",rect<s32>(10,30,80,50), false, false, theWin, 0, false);
-    guienv->addButton(rect<s32>(10, 80, 80, 100), theWin, 0 ,L"Connect");
+    IGUIWindow *theWin = guienv->addWindow(rect<s32>(40,20,250,140),
+                                           false,
+                                           L"Connect",
+                                           0,
+                                           GUI_ID_CONNECT_WINDOW);
+    theWin->setDrawTitlebar(false);
+    guienv->addEditBox(L"",
+                       rect<s32>(90,30,190,50),
+                       false,
+                       theWin,
+                       GUI_ID_IP_TEXTBOX);
+    guienv->addEditBox(L"",
+                       rect<s32>(90, 55, 190, 75),
+                       false,
+                       theWin,
+                       GUI_ID_PORT_TEXTBOX);
+    guienv->addStaticText(L"Port: ",
+                          rect<s32>(10,55,80,75),
+                          false,
+                          false,
+                          theWin,
+                          0,
+                          false);
+    guienv->addStaticText(L"IP Address: ",
+                          rect<s32>(10,30,80,50),
+                          false,
+                          false,
+                          theWin,
+                          0,
+                          false);
+    guienv->addButton(rect<s32>(10, 80, 80, 100),
+                      theWin,
+                      GUI_ID_CONNECT_BUTTON,
+                      L"Connect");
+    cnttxt = guienv->addStaticText(L"Shadow Sucks",//Text
+                                                   rect<s32>(10, 100, 80, 110),//Size & Location
+                                                   false,
+                                                   false,
+                                                   theWin,//Parent
+                                                   GUI_ID_CONNECT_WINDOW_TEXT,//iD
+                                                   false);//Background
+    cnttxt->setVisible(false);
 }
 
 void ntrack::run()
@@ -93,11 +130,19 @@ void ntrack::run()
     game->drop();
 }
 
-void onButtonClicked(IGUIButton *btn)
+void ntrack::onButtonClicked(IGUIButton *btn)
 {
     //TODO: Check if the button is ours if not dispatch to lua
+    s32 id = btn->getID();
+    if(id == GUI_ID_CONNECT_BUTTON)
+    {
+        //The connect button has been pushed
+        //clientCon = new netClient()
+        cnttxt->setVisible(true);
+    }
 }
-void onMenuItemSelected(IGUIContextMenu *menu)
+void ntrack::onMenuItemSelected(IGUIContextMenu *menu)
 {
+
 
 }

@@ -51,8 +51,10 @@ class ntrack : public IEventReceiver
             GUI_ID_CONNECT_WINDOW = 100,
             GUI_ID_CONNECT_BUTTON = 101,
             GUI_ID_IP_TEXTBOX = 102,
-            GUI_ID_PORT_TEXTBOX = 103
+            GUI_ID_PORT_TEXTBOX = 103,
+            GUI_ID_CONNECT_WINDOW_TEXT = 104
         };
+        IGUIStaticText *cnttxt = NULL;
 };
 
 #endif // NTRACK_H

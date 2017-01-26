@@ -1057,3 +1057,23 @@
 	"packet.hpp"
 	"globalExceptions.hpp"
 
+1485158981 source:c:\users\nathan\documents\github\virtuedev\ntrack\src\main.cpp
+	<irrlicht.h>
+	"SettingsManager.h"
+	"ntrack.h"
+
+1485126218 c:\users\nathan\documents\github\virtuedev\ntrack\src\settingsmanager.h
+	<irrlicht.h>
+
+1485204061 c:\users\nathan\documents\github\virtuedev\ntrack\src\ntrack.h
+	<irrlicht.h>
+	<netClient.h>
+	<netServer.h>
+	"SettingsManager.h"
+
+1485204882 source:c:\users\nathan\documents\github\virtuedev\ntrack\src\ntrack.cpp
+	"ntrack.h"
+
+1485126218 source:c:\users\nathan\documents\github\virtuedev\ntrack\src\settingsmanager.cpp
+	"SettingsManager.h"
+

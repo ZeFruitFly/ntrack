@@ -13,6 +13,7 @@ SettingsManager::SettingsManager(stringw settingsFile)
 	const stringw resolution(L"resolution");
 	const stringw drivertag(L"driver");
 	const stringw fullscreentag(L"fullscreen");
+	
 
 	IXMLReader* settingsReader = tempDevice->getFileSystem()->createXMLReader(settingsFile);
 	if (settingsReader != NULL)
@@ -59,11 +60,11 @@ SettingsManager::SettingsManager(stringw settingsFile)
 							//Use Default setting here.
 							screen_w = 800, screen_h = 600;
 						}
-						if (settingsReader->getAttributeValueAsInt(L"fullscreen") == 0)//fullscreen= 0 or 1
+						if (stringw(L"true").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen")))//fullscreen= 0 or 1
 						{
 							fullscreen = false;
 						}
-						else{
+						else if(stringw(L"false").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen"))){
 							fullscreen = true;
 						}
 					}
@@ -97,6 +98,7 @@ SettingsManager::SettingsManager(stringw settingsFile)
 		screen_w = 800, screen_h = 600;
 		fullscreen = false;
 	}
+	
 
 }
 
@@ -105,7 +107,7 @@ SettingsManager::~SettingsManager()
 	//dtor
 }
 
-void saveSettings()
+void saveSettings(stringw settingsFile)
 {
-
+	//TODO
 }

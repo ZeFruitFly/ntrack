@@ -11,7 +11,7 @@ using namespace quake3;
 
 #include "SettingsManager.h"
 
-/* This class is the hub of all activity lua will be initialized here,
+/* This class is the hub of all activity, lua will be initialized here,
 as will settings, client/server connections etc. */
 class ntrack : public IEventReceiver
 {

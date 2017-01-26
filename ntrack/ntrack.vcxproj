@@ -66,11 +66,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="ntrack.cpp" />
     <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="ntrack.h" />
     <ClInclude Include="SettingsManager.h" />
   </ItemGroup>

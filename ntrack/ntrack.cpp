@@ -20,6 +20,10 @@ ntrack::ntrack(int argc, char *argv[])
 			{
 				mgr->dedicatedServer = true; //Make sure to store this for later.
 			}
+			else if (strcmp("-w", argv[i]) == 0)
+			{
+
+			}
 
 		}
 	}

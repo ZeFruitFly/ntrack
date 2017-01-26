@@ -14,6 +14,7 @@ using namespace std;
 #pragma comment(lib, "Irrlicht.lib")
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
+#pragma comment(lib, "ws2_32.lib")
 
 
 void main(int argc, char *argv[])

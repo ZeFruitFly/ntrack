@@ -38,6 +38,7 @@ private:
 	IVideoDriver *driver = NULL;
 	ISceneManager *smgr = NULL;
 	IGUIEnvironment *guienv = NULL;
+	IFileSystem *fs = NULL;
 
 
 

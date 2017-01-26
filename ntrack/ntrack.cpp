@@ -30,6 +30,8 @@ ntrack::ntrack(int argc, char *argv[])
 	game = createDevice(mgr->drvType, dimension2d<u32>(mgr->screen_w, mgr->screen_h), 16, mgr->fullscreen, false, true, this);
 	if (game == NULL)
 	{
+		throw "Device creation error";
+		return; //Just in case
 		//Device creation failed
 	}
 	driver = game->getVideoDriver();
@@ -146,7 +148,7 @@ void ntrack::onButtonClicked(IGUIButton *btn)
 		//The connect button has been pushed
 		//clientCon = new netClient()
 
-		cnttxt->setVisible(true);
+		cnttxt->setVisible(true);//We tell them that shadow sucks for now. :P
 	}
 }
 void ntrack::onMenuItemSelected(IGUIContextMenu *menu)

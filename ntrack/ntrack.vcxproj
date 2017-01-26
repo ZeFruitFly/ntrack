@@ -44,11 +44,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\irrlicht-1.8.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src;C:\irrlicht-1.8.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\irrlicht-1.8.4\lib\Win32-visualstudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src;C:\irrlicht-1.8.4\lib\Win32-visualstudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,12 +68,14 @@
   <ItemGroup>
     <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="ntrack.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="ntrack.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SettingsManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

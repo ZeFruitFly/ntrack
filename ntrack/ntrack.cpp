@@ -35,8 +35,29 @@ ntrack::ntrack(int argc, char *argv[])
 		//Device creation failed
 	}
 	driver = game->getVideoDriver();
+	if (driver == NULL)
+	{
+		throw "Something is seriously wrong: getVideoDriver()";
+		return;
+	}
 	smgr = game->getSceneManager();
+	if (smgr == NULL)
+	{
+		throw "Something is seriously wrong: getSceneManager()";
+		return;
+	}
 	guienv = game->getGUIEnvironment();
+	if (guienv == NULL)
+	{
+		throw "Something is seriously wrong: getGUIEnvironment";
+		return;
+	}
+	fs = game->getFileSystem();
+	if (fs == NULL)
+	{
+		throw "Something is seriously wrong: getFileSystem()";
+		return;
+	}
 	run();
 
 }

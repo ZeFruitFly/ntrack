@@ -1,5 +1,10 @@
 #pragma once
 #include <irrlicht.h>
+extern "C" {
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
+}
 
 using namespace irr;
 using namespace core;
@@ -10,6 +15,7 @@ using namespace io;
 using namespace quake3;
 
 #include "SettingsManager.h"
+
 
 /* This class is the hub of all activity, lua will be initialized here,
 as will settings, client/server connections etc. */
@@ -56,6 +62,9 @@ private:
 	IGUIStaticText *cnttxt = NULL;
 	IGUIWindow *theWin = NULL;
 	IGUIEditBox *IPAddress = NULL, *PORT = NULL;
+
+	//Lua stuff
+	lua_State *cL = NULL, *sL = NULL;
 };
 
 

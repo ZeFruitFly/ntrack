@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<setting name="display" driver="3" width="800" height="600">
+<setting name="display" driver="3" width="800" height="600" fullscreen="false">

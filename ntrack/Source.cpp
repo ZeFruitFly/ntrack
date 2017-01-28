@@ -15,6 +15,7 @@ using namespace std;
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 #pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "lua5.3.3-static.lib")
 
 
 void main(int argc, char *argv[])

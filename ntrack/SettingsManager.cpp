@@ -62,10 +62,13 @@ SettingsManager::SettingsManager(stringw settingsFile)
 						}
 						if (stringw(L"true").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen")))//fullscreen= 0 or 1
 						{
-							fullscreen = false;
+							fullscreen = true;
 						}
 						else if(stringw(L"false").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen"))){
-							fullscreen = true;
+							fullscreen = false;
+						}
+						else{
+							fullscreen = false;
 						}
 					}
 					else if (serverSettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=server

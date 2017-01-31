@@ -58,6 +58,8 @@ ntrack::ntrack(int argc, char *argv[])
 		throw "Something is seriously wrong: getFileSystem()";
 		return;
 	}
+	cL = luaL_newstate();
+	rmgr = new ResourceManager(cL, false, fs);
 	run();
 
 }
@@ -87,7 +89,20 @@ bool ntrack::OnEvent(const SEvent& event)
 
 	}if (event.EventType == EET_LOG_TEXT_EVENT)
 	{
-
+		//We can output this stuff to a file if we like.
+		switch (event.LogEvent.Level)
+		{
+		case ELL_DEBUG:
+			break;
+		case ELL_ERROR:
+			break;
+		case ELL_INFORMATION:
+			break;
+		case ELL_NONE:
+			break;
+		case ELL_WARNING:
+			break;
+		}
 	}
 	else if (EET_MOUSE_INPUT_EVENT)
 	{

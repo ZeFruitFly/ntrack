@@ -15,6 +15,7 @@ using namespace io;
 using namespace quake3;
 
 #include "SettingsManager.h"
+#include "ResourceManager.h"
 
 
 /* This class is the hub of all activity, lua will be initialized here,
@@ -65,6 +66,10 @@ private:
 
 	//Lua stuff
 	lua_State *cL = NULL, *sL = NULL;
+
+	//Resource manager garbage
+
+	ResourceManager * rmgr = NULL;
 };
 
 

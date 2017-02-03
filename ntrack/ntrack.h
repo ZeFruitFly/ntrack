@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <fstream>
 #include <irrlicht.h>
 extern "C" {
 #include <lua.h>
@@ -70,6 +72,9 @@ private:
 	//Resource manager garbage
 
 	ResourceManager * rmgr = NULL;
+
+	//Logging stuff
+	std::ofstream logFile;
 };
 
 

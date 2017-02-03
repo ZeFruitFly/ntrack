@@ -10,6 +10,7 @@ using namespace quake3;
 
 ntrack::ntrack(int argc, char *argv[])
 {
+	logFile.open("Console.log", std::ios::out | std::ios::ate);
 	mgr = new SettingsManager("settings.xml");
 	//All settings provided via command line over ride the default settings or the settings in the xml.
 	for (int i = 0; i < argc; i++)
@@ -59,7 +60,7 @@ ntrack::ntrack(int argc, char *argv[])
 		return;
 	}
 	cL = luaL_newstate();
-	rmgr = new ResourceManager(cL, false, fs);
+	rmgr = new ResourceManager(cL, false, fs, game->getLogger());
 	run();
 
 }
@@ -93,14 +94,34 @@ bool ntrack::OnEvent(const SEvent& event)
 		switch (event.LogEvent.Level)
 		{
 		case ELL_DEBUG:
+			if (logFile.is_open())
+			{
+				logFile << "DEBUG: " << event.LogEvent.Text << std::endl;
+			}
 			break;
 		case ELL_ERROR:
+			if (logFile.is_open())
+			{
+				logFile << "ERROR: " << event.LogEvent.Text << std::endl;
+			}
 			break;
 		case ELL_INFORMATION:
+			if (logFile.is_open())
+			{
+				logFile << "INFO: " << event.LogEvent.Text << std::endl;
+			}
 			break;
 		case ELL_NONE:
+			if (logFile.is_open())
+			{
+				logFile << event.LogEvent.Text << std::endl;
+			}
 			break;
 		case ELL_WARNING:
+			if (logFile.is_open())
+			{
+				logFile << "WARN: " << event.LogEvent.Text << std::endl;
+			}
 			break;
 		}
 	}

@@ -101,8 +101,7 @@ SettingsManager::SettingsManager(stringw settingsFile)
 		screen_w = 800, screen_h = 600;
 		fullscreen = false;
 	}
-	
-
+	settingsReader->drop();
 }
 
 SettingsManager::~SettingsManager()

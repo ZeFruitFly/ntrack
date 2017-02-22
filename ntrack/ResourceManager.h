@@ -23,8 +23,5 @@ public:
 	~ResourceManager();
 
 private:
-	list<vector3d<s32>> spawnpoints; //Used to store spawn locations.
-	list<path> scripts;
-	list<path> maps;
 };
 

@@ -26,3 +26,11 @@
 *.out
 *.app
 ntrack.opensdf
+ntrack/Release/ntrack.tlog/unsuccessfulbuild
+*.lastbuildstate
+ntrack/Release/ntrack.tlog/cl.command.1.tlog
+*.tlog
+*.tlog
+ntrack/Debug/ntrack.tlog/link.read.1.tlog
+*.log
+*.log

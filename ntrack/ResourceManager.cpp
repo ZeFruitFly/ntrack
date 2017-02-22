@@ -23,6 +23,7 @@ ResourceManager::ResourceManager(lua_State *L, bool dedicated, IFileSystem *fs, 
 		//Why must this happen D:
 		throw "Resource manager cannot create file list";
 	}
+	path resourceDir = fs->getWorkingDirectory();
 	if (FileList->getFileCount() > 0)
 	{
 		for (u32 i = 0; i < FileList->getFileCount(); i++)
@@ -30,66 +31,76 @@ ResourceManager::ResourceManager(lua_State *L, bool dedicated, IFileSystem *fs, 
 			if (FileList->isDirectory(i))
 			{
 				//We have found a directory create a list of the files in it.
-				path theFolder = FileList->getFileName(i);
-				if (theFolder == NULL)
+				if (!stringw(".").equals_ignore_case(FileList->getFileName(i)))
 				{
-					logger->log("NULL folder name", ELL_ERROR);
-					throw "NULL folder name panic";
-				}
-				path resourceDir = fs->getWorkingDirectory();
-				if (!fs->changeWorkingDirectoryTo(theFolder))
-				{
-					stringw errorout = "Unable to open folder ";
-					errorout += theFolder;
-					errorout += " skipping";
-					logger->log(errorout.c_str(), ELL_ERROR);
-					//throw "Unable to change directory";
-				}
-				else{//The program will no longer throw an exception instead it'll just skip it.
-					IFileList *FolderContents = fs->createFileList();
-					//Now we need to check if meta.xml exists
-					if (FolderContents->findFile("meta.xml") > -1)
+					if (!stringw("..").equals_ignore_case(FileList->getFileName(i)))
 					{
-						/*meta.xml exists we should do something with it.
-						On a personal note I need to figure out how i'm going
-						to allocate resources before I continue*/
-						IXMLReader *metaReader = fs->createXMLReader("meta.xml");
-						if (metaReader == NULL)
+						path theFolder = FileList->getFullFileName(i);
+						if (theFolder == NULL)
 						{
-							stringw errorout = "Unable to load file";
-							errorout += fs->getWorkingDirectory();
-							errorout += "/meta.xml";
+							logger->log("NULL folder name", ELL_ERROR);
+							throw "NULL folder name panic";
+						}
+						
+						if (!fs->changeWorkingDirectoryTo(theFolder))
+						{
+							stringw errorout = "Unable to open folder ";
+							errorout += theFolder;
+							errorout += " skipping";
 							logger->log(errorout.c_str(), ELL_ERROR);
+							//throw "Unable to change directory";
 						}
-						stringw mapTag = "map";
-						while (metaReader->read())
-						{
-							switch (metaReader->getNodeType())
-							{
-							case EXN_CDATA:
-								break;
-							case EXN_COMMENT:
-								logger->log("Found XML comment in meta.xml");
-								break;
-							case EXN_ELEMENT:
-								if (mapTag.equals_ignore_case(metaReader->getNodeName()))
+						else{//The program will no longer throw an exception instead it'll just skip it.
+							IFileList *FolderContents = fs->createFileList();
+							//Now we need to check if meta.xml exists
+							
+							
+								/*meta.xml exists we should do something with it.
+								On a personal note I need to figure out how i'm going
+								to allocate resources before I continue*/
+								IXMLReader *metaReader = fs->createXMLReader("meta.xml");
+								if (metaReader == NULL)
 								{
-									//Load a map
+									stringw errorout = "Unable to load file";
+									errorout += fs->getWorkingDirectory();
+									errorout += "/meta.xml";
+									logger->log(errorout.c_str(), ELL_ERROR);
 								}
-								break;
-							case EXN_ELEMENT_END:
-								break;
-							case EXN_NONE:
-								break;
-							case EXN_TEXT:
-								break;
-							}
+								stringw mapTag = "map";
+								while (metaReader->read())
+								{
+									switch (metaReader->getNodeType())
+									{
+									case EXN_CDATA:
+										break;
+									case EXN_COMMENT:
+										logger->log("Found XML comment in meta.xml");
+										break;
+									case EXN_ELEMENT:
+										if (mapTag.equals_ignore_case(metaReader->getNodeName()))
+										{
+											logger->log("Loading map", ELL_INFORMATION);
+											//Load a map
+										}
+										break;
+									case EXN_ELEMENT_END:
+										break;
+									case EXN_NONE:
+										break;
+									case EXN_TEXT:
+										break;
+									}
+								}
+							
 						}
-					}
+
+
+					}//In the future search for zip files too :D
+					
 				}
-
-
-			}//In the future search for zip files too :D
+				
+			}
+			fs->changeWorkingDirectoryTo(resourceDir);
 		}
 	}
 

@@ -34,3 +34,9 @@ ntrack/Release/ntrack.tlog/cl.command.1.tlog
 ntrack/Debug/ntrack.tlog/link.read.1.tlog
 *.log
 *.log
+ntrack/Console.log
+ntrack/Debug/ntrack.Build.CppClean.log
+ntrack/Debug/ntrack.tlog/CL.read.1.tlog
+*.tlog
+ntrack/Debug/ntrack.tlog/link.write.1.tlog
+*.tlog

@@ -18,64 +18,60 @@ using namespace quake3;
 
 #include "SettingsManager.h"
 #include "ResourceManager.h"
+#include "globals.h"
 
+namespace ntrack_g{
+		
+		/* This class is the hub of all activity, lua will be initialized here,
+		as will settings, client/server connections etc. */
+		class ntrack : public IEventReceiver
+		{
+		public:
+			ntrack(int argc, char *argv[]);
+			virtual ~ntrack();
 
-/* This class is the hub of all activity, lua will be initialized here,
-as will settings, client/server connections etc. */
-class ntrack : public IEventReceiver
-{
-public:
-	ntrack(int argc, char *argv[]);
-	virtual ~ntrack();
+			virtual bool OnEvent(const SEvent&);
 
-	virtual bool OnEvent(const SEvent&);
+			void buildConnectWindow();
 
-	void buildConnectWindow();
+			void run();
 
-	void run();
+			void connectToServer();
+			void startServer();
 
-	void connectToServer();
-	void startServer();
-
-	//Called when a corresponding event has been triggered.
-	void onButtonClicked(IGUIButton *);
-	void onMenuItemSelected(IGUIContextMenu *);
-protected:
-private:
-	SettingsManager *mgr = NULL;
-	IrrlichtDevice *logic = NULL, *controll = NULL, *game = NULL;
-	IVideoDriver *driver = NULL;
-	ISceneManager *smgr = NULL;
-	IGUIEnvironment *guienv = NULL;
-	IFileSystem *fs = NULL;
+			//Called when a corresponding event has been triggered.
+			void onButtonClicked(IGUIButton *);
+			void onMenuItemSelected(IGUIContextMenu *);
+		protected:
+		private:
 
 
 
-	//Network stuff
 
-	//GUI Stuff
-	enum
-	{
-		GUI_ID_CONNECT_WINDOW = 100,
-		GUI_ID_CONNECT_BUTTON = 101,
-		GUI_ID_IP_TEXTBOX = 102,
-		GUI_ID_PORT_TEXTBOX = 103,
-		GUI_ID_CONNECT_WINDOW_TEXT = 104
-	};
-	IGUIStaticText *cnttxt = NULL;
-	IGUIWindow *theWin = NULL;
-	IGUIEditBox *IPAddress = NULL, *PORT = NULL;
+			//Network stuff
 
-	//Lua stuff
-	lua_State *cL = NULL, *sL = NULL;
+			//GUI Stuff
+			enum
+			{
+				GUI_ID_CONNECT_WINDOW = 100,
+				GUI_ID_CONNECT_BUTTON = 101,
+				GUI_ID_IP_TEXTBOX = 102,
+				GUI_ID_PORT_TEXTBOX = 103,
+				GUI_ID_CONNECT_WINDOW_TEXT = 104
+			};
+			IGUIStaticText *cnttxt = NULL;
+			IGUIWindow *theWin = NULL;
+			IGUIEditBox *IPAddress = NULL, *PORT = NULL;
 
-	//Resource manager garbage
+			//Lua stuff
+			lua_State *cL = NULL, *sL = NULL;
 
-	ResourceManager * rmgr = NULL;
+			//Resource manager garbage
 
-	//Logging stuff
-	std::ofstream logFile;
-};
+			ResourceManager * rmgr = NULL;
 
-
+			//Logging stuff
+			std::ofstream logFile;
+		};
+}//namespace ntrack_g
 

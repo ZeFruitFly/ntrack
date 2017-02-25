@@ -183,6 +183,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="globals.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="ntrack.cpp" />
     <ClCompile Include="Resource.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="globals.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="ntrack.h" />
     <ClInclude Include="Resource.h" />

@@ -16,7 +16,7 @@ using namespace std;
 #endif
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "lua5.3.3-static.lib")
-
+using namespace ntrack_g;
 
 void main(int argc, char *argv[])
 {

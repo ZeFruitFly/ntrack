@@ -5,24 +5,25 @@
 
 using namespace irr;
 using namespace core;
+namespace ntrack_g{
+	class NetworkManager
+	{
+	public:
+		NetworkManager();
+		~NetworkManager();
 
-class NetworkManager
-{
-public:
-	NetworkManager();
-	~NetworkManager();
-	
-	void setHostname(const char*);
-	void setPort(const char*);
+		void setHostname(const char*);
+		void setPort(const char*);
 
-	void connectToServer();
-	void openServer();
+		void connectToServer();
+		void openServer();
 
-	void sendData(char*);
-	char* receiveData();
+		void sendData(char*);
+		char* receiveData();
 
-	void acceptClient();
+		void acceptClient();
 
-	void run();
-};
+		void run();
+	};
 
+}//namespace ntrack_g

@@ -1,70 +1,67 @@
 #include "ResourceManager.h"
-
-
-ResourceManager::ResourceManager(lua_State *L, bool dedicated, IFileSystem *fs, ILogger* logger)
-{
-	logger->log("Initiated Resource Manager", ELL_INFORMATION);
-	if (fs == NULL)
-	{ 
-		//We should of never got to this point.
-	}
-	/*TODO: Search the resource directory for zip files or folders.
-	Then locate a meta.xml file. Use the contents of the meta.xml to
-	load build a list of files to load when the resource is started.*/
-	if (!fs->changeWorkingDirectoryTo("Resources"))
-	{
-		logger->log("Unable to open resource directory, does it exist?", ELL_ERROR);
-		throw "Unable to change directory";
-	}
+using namespace irr;
+namespace ntrack_g{
 	
-	IFileList *FileList = fs->createFileList();
-	if (FileList == NULL)
+	ResourceManager::ResourceManager(bool dedicated)
 	{
-		//Why must this happen D:
-		throw "Resource manager cannot create file list";
-	}
-	path resourceDir = fs->getWorkingDirectory();
-	if (FileList->getFileCount() > 0)
-	{
-		for (u32 i = 0; i < FileList->getFileCount(); i++)
+		globaldefs.game->getLogger()->log("Initiated Resource Manager", ELL_INFORMATION);
+		/*TODO: Search the resource directory for zip files or folders.
+		Then locate a meta.xml file. Use the contents of the meta.xml to
+		load build a list of files to load when the resource is started.*/
+		if (!globaldefs.game->getFileSystem()->changeWorkingDirectoryTo("Resources"))
 		{
-			if (FileList->isDirectory(i))
+			globaldefs.game->getLogger()->log("Unable to open resource directory, does it exist?", ELL_ERROR);
+			throw "Unable to change directory";
+		}
+
+		IFileList *FileList = globaldefs.game->getFileSystem()->createFileList();
+		if (FileList == NULL)
+		{
+			//Why must this happen D:
+			throw "Resource manager cannot create file list";
+		}
+		path resourceDir = globaldefs.game->getFileSystem()->getWorkingDirectory();
+		if (FileList->getFileCount() > 0)
+		{
+			for (u32 i = 0; i < FileList->getFileCount(); i++)
 			{
-				//We have found a directory create a list of the files in it.
-				if (!stringw(".").equals_ignore_case(FileList->getFileName(i)))
+				if (FileList->isDirectory(i))
 				{
-					if (!stringw("..").equals_ignore_case(FileList->getFileName(i)))
+					//We have found a directory create a list of the files in it.
+					if (!stringw(".").equals_ignore_case(FileList->getFileName(i)))
 					{
-						path theFolder = FileList->getFullFileName(i);
-						if (theFolder == NULL)
+						if (!stringw("..").equals_ignore_case(FileList->getFileName(i)))
 						{
-							logger->log("NULL folder name", ELL_ERROR);
-							throw "NULL folder name panic";
-						}
-						
-						if (!fs->changeWorkingDirectoryTo(theFolder))
-						{
-							stringw errorout = "Unable to open folder ";
-							errorout += theFolder;
-							errorout += " skipping";
-							logger->log(errorout.c_str(), ELL_ERROR);
-							//throw "Unable to change directory";
-						}
-						else{//The program will no longer throw an exception instead it'll just skip it.
-							IFileList *FolderContents = fs->createFileList();
-							//Now we need to check if meta.xml exists
-							
-							
+							path theFolder = FileList->getFullFileName(i);
+							if (theFolder == NULL)
+							{
+								globaldefs.game->getLogger()->log("NULL folder name", ELL_ERROR);
+								throw "NULL folder name panic";
+							}
+
+							if (!globaldefs.game->getFileSystem()->changeWorkingDirectoryTo(theFolder))
+							{
+								stringw errorout = "Unable to open folder ";
+								errorout += theFolder;
+								errorout += " skipping";
+								globaldefs.game->getLogger()->log(errorout.c_str(), ELL_ERROR);
+								//throw "Unable to change directory";
+							}
+							else{//The program will no longer throw an exception instead it'll just skip it.
+								IFileList *FolderContents = globaldefs.game->getFileSystem()->createFileList();
+								//Now we need to check if meta.xml exists
+
+
 								/*meta.xml exists we should do something with it.
 								On a personal note I need to figure out how i'm going
 								to allocate resources before I continue*/
-								IXMLReader *metaReader = fs->createXMLReader("meta.xml");
+								IXMLReader *metaReader = globaldefs.game->getFileSystem()->createXMLReader("meta.xml");
 								if (metaReader == NULL)
 								{
 									stringw errorout = "Unable to load file";
-									errorout += fs->getWorkingDirectory();
+									errorout += globaldefs.game->getFileSystem()->getWorkingDirectory();
 									errorout += "/meta.xml";
-									logger->log(errorout.c_str(), ELL_ERROR);
+									globaldefs.game->getLogger()->log(errorout.c_str(), ELL_ERROR);
 								}
 								stringw mapTag = "map";
 								while (metaReader->read())
@@ -74,12 +71,12 @@ ResourceManager::ResourceManager(lua_State *L, bool dedicated, IFileSystem *fs, 
 									case EXN_CDATA:
 										break;
 									case EXN_COMMENT:
-										logger->log("Found XML comment in meta.xml");
+										globaldefs.game->getLogger()->log("Found XML comment in meta.xml");
 										break;
 									case EXN_ELEMENT:
 										if (mapTag.equals_ignore_case(metaReader->getNodeName()))
 										{
-											logger->log("Loading map", ELL_INFORMATION);
+											globaldefs.game->getLogger()->log("Loading map", ELL_INFORMATION);
 											//Load a map
 										}
 										break;
@@ -91,22 +88,24 @@ ResourceManager::ResourceManager(lua_State *L, bool dedicated, IFileSystem *fs, 
 										break;
 									}
 								}
-							
-						}
+
+							}
 
 
-					}//In the future search for zip files too :D
-					
+						}//In the future search for zip files too :D
+
+					}
+
 				}
-				
+				globaldefs.game->getFileSystem()->changeWorkingDirectoryTo(resourceDir);
 			}
-			fs->changeWorkingDirectoryTo(resourceDir);
 		}
+
 	}
 
-}
 
+	ResourceManager::~ResourceManager()
+	{
+	}
 
-ResourceManager::~ResourceManager()
-{
-}
+}//namespace ntrack_g

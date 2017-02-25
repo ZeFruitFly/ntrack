@@ -36,6 +36,9 @@
     <ClCompile Include="Script.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ntrack.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Script.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,115 +1,117 @@
 #include "SettingsManager.h"
 
-
-SettingsManager::SettingsManager(stringw settingsFile)
-{
-	IrrlichtDevice *tempDevice = createDevice(EDT_NULL);
-
-	SIrrlichtCreationParameters tempParams;
-
-	const stringw configTag(L"setting");
-	const stringw displaySettingTag(L"display");
-	const stringw serverSettingTag(L"server"); //Only used when launching a server(Not yet implemented).
-	const stringw resolution(L"resolution");
-	const stringw drivertag(L"driver");
-	const stringw fullscreentag(L"fullscreen");
-	
-
-	IXMLReader* settingsReader = tempDevice->getFileSystem()->createXMLReader(settingsFile);
-	if (settingsReader != NULL)
+namespace ntrack_g{
+	SettingsManager::SettingsManager(stringw settingsFile)
 	{
-		while (settingsReader->read()) //This will loop until we reach the end of the file
+		IrrlichtDevice *tempDevice = createDevice(EDT_NULL);
+
+		SIrrlichtCreationParameters tempParams;
+
+		const stringw configTag(L"setting");
+		const stringw displaySettingTag(L"display");
+		const stringw serverSettingTag(L"server"); //Only used when launching a server(Not yet implemented).
+		const stringw resolution(L"resolution");
+		const stringw drivertag(L"driver");
+		const stringw fullscreentag(L"fullscreen");
+
+
+		IXMLReader* settingsReader = tempDevice->getFileSystem()->createXMLReader(settingsFile);
+		if (settingsReader != NULL)
 		{
-			switch (settingsReader->getNodeType())
+			while (settingsReader->read()) //This will loop until we reach the end of the file
 			{
-			case EXN_NONE:
-				break;
-			case EXN_ELEMENT:
-				if (configTag.equals_ignore_case(settingsReader->getNodeName()))//if <setting>
+				switch (settingsReader->getNodeType())
 				{
-					if (displaySettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=display
+				case EXN_NONE:
+					break;
+				case EXN_ELEMENT:
+					if (configTag.equals_ignore_case(settingsReader->getNodeName()))//if <setting>
 					{
-						//We gather our display settings here.
-						int driver = settingsReader->getAttributeValueAsInt(L"driver");//driver=???
-						if ((driver != 0) && (driver < 5))
+						if (displaySettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=display
 						{
-							//Driver settings 1 = Software, 2 = OpenGL, 3 = DirectX9, 4 = burning(default).
-							switch (driver)
+							//We gather our display settings here.
+							int driver = settingsReader->getAttributeValueAsInt(L"driver");//driver=???
+							if ((driver != 0) && (driver < 5))
 							{
-							case 1:
+								//Driver settings 1 = Software, 2 = OpenGL, 3 = DirectX9, 4 = burning(default).
+								switch (driver)
+								{
+								case 1:
+									drvType = EDT_SOFTWARE;
+									break;
+								case 2:
+									drvType = EDT_OPENGL;
+									break;
+								case 3:
+									drvType = EDT_DIRECT3D9;
+									break;
+								case 4:
+									drvType = EDT_BURNINGSVIDEO;
+									break;
+								}
+							}
+							else{
 								drvType = EDT_SOFTWARE;
-								break;
-							case 2:
-								drvType = EDT_OPENGL;
-								break;
-							case 3:
-								drvType = EDT_DIRECT3D9;
-								break;
-							case 4:
-								drvType = EDT_BURNINGSVIDEO;
-								break;
+							}
+							screen_w = settingsReader->getAttributeValueAsInt(L"width");//width=???
+							screen_h = settingsReader->getAttributeValueAsInt(L"height");//height=???
+							if ((screen_w == 0) || (screen_h == 0))
+							{
+								//Use Default setting here.
+								screen_w = 800, screen_h = 600;
+							}
+							if (stringw(L"true").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen")))//fullscreen= 0 or 1
+							{
+								fullscreen = true;
+							}
+							else if (stringw(L"false").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen"))){
+								fullscreen = false;
+							}
+							else{
+								fullscreen = false;
 							}
 						}
-						else{
-							drvType = EDT_SOFTWARE;
-						}
-						screen_w = settingsReader->getAttributeValueAsInt(L"width");//width=???
-						screen_h = settingsReader->getAttributeValueAsInt(L"height");//height=???
-						if ((screen_w == 0) || (screen_h == 0))
+						else if (serverSettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=server
 						{
-							//Use Default setting here.
-							screen_w = 800, screen_h = 600;
-						}
-						if (stringw(L"true").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen")))//fullscreen= 0 or 1
-						{
-							fullscreen = true;
-						}
-						else if(stringw(L"false").equals_ignore_case(settingsReader->getAttributeValue(L"fullscreen"))){
-							fullscreen = false;
-						}
-						else{
-							fullscreen = false;
+							//Here is where the settings for the dedicated server will be processed or lan servers.
+
 						}
 					}
-					else if (serverSettingTag.equals_ignore_case(settingsReader->getAttributeValueSafe(L"name")))//name=server
-					{
-						//Here is where the settings for the dedicated server will be processed or lan servers.
-						
-					}
+					break;
+				case EXN_ELEMENT_END:
+					break;
+				case EXN_TEXT:
+					break;
+				case EXN_COMMENT:
+					break;
+				case EXN_CDATA:
+					break;
+				case EXN_UNKNOWN:
+					break;
 				}
-				break;
-			case EXN_ELEMENT_END:
-				break;
-			case EXN_TEXT:
-				break;
-			case EXN_COMMENT:
-				break;
-			case EXN_CDATA:
-				break;
-			case EXN_UNKNOWN:
-				break;
 			}
+
+			//Free up memory
+			settingsReader->drop();
+			tempDevice->drop();
 		}
-
-		//Free up memory
+		else{
+			//The setting reader has failed to open the settings file
+			drvType = EDT_SOFTWARE;
+			screen_w = 800, screen_h = 600;
+			fullscreen = false;
+		}
 		settingsReader->drop();
-		tempDevice->drop();
 	}
-	else{
-		//The setting reader has failed to open the settings file
-		drvType = EDT_SOFTWARE;
-		screen_w = 800, screen_h = 600;
-		fullscreen = false;
+
+	SettingsManager::~SettingsManager()
+	{
+		//dtor
 	}
-	settingsReader->drop();
-}
 
-SettingsManager::~SettingsManager()
-{
-	//dtor
-}
+	void saveSettings(stringw settingsFile)
+	{
+		//TODO
+	}
 
-void saveSettings(stringw settingsFile)
-{
-	//TODO
-}
+}//namespace ntrack_g

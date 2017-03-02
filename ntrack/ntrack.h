@@ -16,8 +16,8 @@ using namespace gui;
 using namespace io;
 using namespace quake3;
 
-#include "SettingsManager.h"
-#include "ResourceManager.h"
+//#include "SettingsManager.h"
+//#include "ResourceManager.h"
 #include "globals.h"
 
 namespace ntrack_g{
@@ -62,13 +62,6 @@ namespace ntrack_g{
 			IGUIStaticText *cnttxt = NULL;
 			IGUIWindow *theWin = NULL;
 			IGUIEditBox *IPAddress = NULL, *PORT = NULL;
-
-			//Lua stuff
-			lua_State *cL = NULL, *sL = NULL;
-
-			//Resource manager garbage
-
-			ResourceManager * rmgr = NULL;
 
 			//Logging stuff
 			std::ofstream logFile;

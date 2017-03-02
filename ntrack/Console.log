@@ -6,4 +6,5 @@ INFO: Currently available Video Memory (kB): 2018304
 INFO: Resizing window (800 600)
 INFO: Resetting D3D9 device.
 INFO: Initiated Resource Manager
-ERROR: Unable to open folder: deathmatch
+INFO: Found XML comment in meta.xml
+INFO: Loading map

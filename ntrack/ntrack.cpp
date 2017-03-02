@@ -66,8 +66,7 @@ namespace ntrack_g{
 			throw "Something is seriously wrong: getFileSystem()";
 			return;
 		}
-		cL = luaL_newstate();
-		rmgr = new ResourceManager(false);
+		globaldefs.rmgr = new ResourceManager();
 		run();
 
 	}

@@ -186,6 +186,7 @@
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="ntrack.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Script.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="ntrack.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Script.h" />

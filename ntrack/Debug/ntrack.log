@@ -1,12 +1,25 @@
-﻿Build started 2/3/2017 7:37:47 AM.
+﻿Build started 3/1/2017 11:25:58 AM.
      1>Project "C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\ntrack\ntrack.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src" /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\irrlicht-1.8.4\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ResourceManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src" /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\irrlicht-1.8.4\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Player.cpp Resource.cpp ResourceManager.cpp Script.cpp Source.cpp globals.cpp ntrack.cpp
+         Player.cpp
+         Generating Code...
+         Compiling...
+         ntrack.cpp
+         globals.cpp
+         Source.cpp
+         Script.cpp
          ResourceManager.cpp
+         Resource.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src" /LIBPATH:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\irrlicht-1.8.4\lib\Win32-visualstudio" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.lib" /MACHINE:X86 Debug\NetworkManager.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src" /LIBPATH:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\irrlicht-1.8.4\lib\Win32-visualstudio" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.lib" /MACHINE:X86 Debug\globals.obj
+         Debug\NetworkManager.obj
          Debug\ntrack.obj
+         Debug\Player.obj
+         Debug\Resource.obj
          Debug\ResourceManager.obj
+         Debug\Script.obj
          Debug\SettingsManager.obj
          Debug\Source.obj
             Creating library C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.lib and object C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Debug\ntrack.exp
@@ -16,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.97
+Time Elapsed 00:00:08.12

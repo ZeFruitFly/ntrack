@@ -1,8 +1,10 @@
 #include "ResourceManager.h"
 using namespace irr;
+#include "globals.h"
+
 namespace ntrack_g{
 	
-	ResourceManager::ResourceManager(bool dedicated)
+	ResourceManager::ResourceManager()
 	{
 		globaldefs.game->getLogger()->log("Initiated Resource Manager", ELL_INFORMATION);
 		/*TODO: Search the resource directory for zip files or folders.
@@ -55,6 +57,7 @@ namespace ntrack_g{
 								/*meta.xml exists we should do something with it.
 								On a personal note I need to figure out how i'm going
 								to allocate resources before I continue*/
+								//Resource *theResource = new Resource()
 								IXMLReader *metaReader = globaldefs.game->getFileSystem()->createXMLReader("meta.xml");
 								if (metaReader == NULL)
 								{
@@ -106,6 +109,7 @@ namespace ntrack_g{
 
 	ResourceManager::~ResourceManager()
 	{
+		
 	}
 
 }//namespace ntrack_g

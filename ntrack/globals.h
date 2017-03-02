@@ -1,6 +1,8 @@
 #pragma once
 #include <irrlicht.h>
+
 #include "SettingsManager.h"
+#include "ResourceManager.h"
 
 
 using namespace irr;
@@ -18,6 +20,8 @@ namespace ntrack_g{
 		ISceneManager *smgr;
 		IGUIEnvironment *guienv;
 		IFileSystem *fs;
+		ResourceManager *rmgr;
 	};
 	extern globals globaldefs;
 }//namespace ntrack_g
+

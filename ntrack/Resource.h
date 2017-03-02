@@ -1,7 +1,7 @@
 #pragma once
 #include <irrlicht.h>
 
-#include "globals.h"
+
 
 extern "C" {
 # include "lua.h"
@@ -20,7 +20,7 @@ namespace ntrack_g{
 	class Resource
 	{
 	public:
-		Resource();
+		Resource(path, bool);
 		~Resource();
 
 		void start();//Needs to load in resources
@@ -37,7 +37,7 @@ namespace ntrack_g{
 		void addMap(path);
 		void addMesh(path);
 		void addTexture(path);
-		void addScript(path);
+		void addScript(path, char);
 
 
 	private:

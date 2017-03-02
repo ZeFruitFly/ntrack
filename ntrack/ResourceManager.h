@@ -1,7 +1,7 @@
 #pragma once
 #include <irrlicht.h>
 
-
+#include "Resource.h"
 
 
 using namespace irr;
@@ -12,17 +12,16 @@ using namespace gui;
 using namespace io;
 using namespace quake3;
 
-#include "globals.h"
+//#include "globals.h"
 /* This class should search irrlichts filesystem for lua scripts
 and hand them down to ntrack.*/
 namespace ntrack_g{
 	class ResourceManager
 	{
 	public:
-		ResourceManager(bool);
+		ResourceManager();
 		~ResourceManager();
 
-	private:
 	};
 
 }//namespace ntrack_g

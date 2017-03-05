@@ -189,7 +189,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Script.cpp" />
     <ClCompile Include="SettingsManager.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -200,7 +199,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Script.h" />
     <ClInclude Include="SettingsManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

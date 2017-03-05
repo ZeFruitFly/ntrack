@@ -12,11 +12,16 @@ namespace ntrack_g{
 			Player();
 			~Player();
 
-			void setPos(vector3d<s32>);
+			void setPos(int x, int y, int z);
 		};
 		int L_Server_Player_Constructor(lua_State *);
+
 		int L_Server_Player_setPos(lua_State *);
-		int L_Server_Player_RegLua(lua_State *);
+
+		void L_Server_Player_RegLua(lua_State *);
+
+		inline Player * L_Server_CheckPlayer(lua_State *, int);
+		int L_Server_Player_Destructor(lua_State *);
 	}//namespace ntrack_lua
 }//namespace ntrack_g
 

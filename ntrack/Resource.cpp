@@ -42,7 +42,7 @@ namespace ntrack_g{
 
 	bool Resource::hasScript()
 	{
-		return scripts.empty();
+		return scripts_Client.empty() || scripts_Server.empty();
 	}
 
 	void Resource::addSpawnPoint(vector3d<s32> point)
@@ -69,29 +69,12 @@ namespace ntrack_g{
 	{
 		if (type == 'c')
 		{
-			//Client side script should be served to the client or loaded if we are the client.
-			if (L_Client == NULL)
-			{
-				//We need to initialize L_Client first.
-			}
-			if (luaL_loadfile(L_Client, file.c_str() ) || lua_pcall(L_Client, 0, 0, 0))
-			{
-				//Error loading file
-			}
+			scripts_Client.push_back(file);
 		}
 		else if (type == 's')
 		{
-			//Server side script load it if we're the server.
-			if (L_Server)
-			{
-				//We need to initialize L_Server first.
-			}
-			if (luaL_loadfile(L_Server, file.c_str()) || lua_pcall(L_Client, 0, 0, 0))
-			{
-				//Error loading file
-			}
+			scripts_Server.push_back(file);
 		}
-		//scripts.push_back(file);
 	}
 	void Resource::start()
 	{
@@ -114,6 +97,47 @@ namespace ntrack_g{
 				}
 			}
 		}
+		if (!textures.empty())
+		{
+			//Unload textures here needs error checking
+			for (list<path>::Iterator it = textures.begin(); it != textures.end(); it++)
+			{
+				path thePath = *it;
+				globaldefs.driver->getTexture(thePath);
+			}
+		}
+		if (!scripts_Client.empty())
+		{
+			if (L_Client == NULL)
+			{
+				L_Client = luaL_newstate();
+				
+			}
+			for (list<path>::Iterator it = scripts_Client.begin(); it != scripts_Client.end(); it++)
+			{
+				path thePath = *it;
+				if (luaL_loadfile(L_Client, thePath.c_str()) || lua_pcall(L_Client, 0, 0, 0))
+				{
+					//Log error here
+				}
+			}
+		}
+		if (!scripts_Server.empty())
+		{
+			if (L_Server == NULL)
+			{
+				L_Server = luaL_newstate();
+				ntrack_lua::L_Server_Player_RegLua(L_Server);
+			}
+			for (list<path>::Iterator it = scripts_Server.begin(); it != scripts_Server.end(); it++)
+			{
+				path thePath = *it;
+				if (luaL_loadfile(L_Server, thePath.c_str()) || lua_pcall(L_Server, 0, 0, 0))
+				{
+					//Log error here
+				}
+			}
+		}
 	}
 
 	void Resource::stop()
@@ -133,7 +157,7 @@ namespace ntrack_g{
 				}
 				else
 				{
-					stringw error = "Resource manager could not unload resource ";
+					stringw error = "Could not unload some files in resource ";
 					error += thePath;
 					error += " is it already unloaded?";
 					globaldefs.game->getLogger()->log(error.c_str(), ELL_WARNING);
@@ -147,7 +171,18 @@ namespace ntrack_g{
 			for (list<path>::Iterator it = textures.begin(); it != textures.end(); it++)
 			{
 				path thePath = *it;
-				globaldefs.game->getVideoDriver()->removeTexture(globaldefs.game->getVideoDriver()->getTexture(thePath));
+				ITexture *theTexture = globaldefs.driver->getTexture(thePath);
+				if (theTexture != NULL)
+				{
+					globaldefs.driver->removeTexture(globaldefs.game->getVideoDriver()->getTexture(thePath));
+				}
+				else
+				{
+					stringw error = "Could not unload some files in resource ";
+					error += thePath;
+					error += " is it already unloaded?";
+					globaldefs.game->getLogger()->log(error.c_str(), ELL_WARNING);
+				}
 			}
 		}
 		//Cleanup the client lua state.
@@ -167,10 +202,11 @@ namespace ntrack_g{
 		}
 		else
 		{
-			//Nothing server side to reload
+			//Nothing server side to unload
 		}
 	}
-	void Resource::restart()
+
+	inline void Resource::restart()
 	{
 		start();
 

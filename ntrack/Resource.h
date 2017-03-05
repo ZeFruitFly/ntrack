@@ -9,6 +9,7 @@ extern "C" {
 # include "lualib.h"
 }
 
+#include "Player.h"
 using namespace irr;
 using namespace core;
 using namespace video;
@@ -25,7 +26,7 @@ namespace ntrack_g{
 
 		void start();//Needs to load in resources
 		void stop();//Needs to unload uneeded resources
-		void restart();//Calls start() then stop()
+		inline void restart();//Calls start() then stop()
 
 		bool hasSpawnPoint();
 		bool hasMap();
@@ -46,7 +47,8 @@ namespace ntrack_g{
 		list<path> maps;
 		list<path> meshs;
 		list<path> textures;
-		list<path> scripts;
+		list<path> scripts_Client, scripts_Server;
+
 		enum
 		{
 			map = 0,
@@ -54,7 +56,10 @@ namespace ntrack_g{
 			texture = 2,
 			script = 3
 		};
+
 		lua_State *L_Client = NULL, *L_Server = NULL;
+
+		stringw name, description, version;
 	};
 
 }//namespace ntrack_g

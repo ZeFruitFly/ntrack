@@ -1,8 +1,10 @@
 #pragma once
 
+#include <rapidjson/document.h>
 #include <irrlicht.h>
 #include <WinSock2.h>
 
+#include "Player.h"
 using namespace irr;
 using namespace core;
 namespace ntrack_g{
@@ -24,6 +26,10 @@ namespace ntrack_g{
 		void acceptClient();
 
 		void run();
+
+		struct client{
+			SOCKET sock;
+		};
 	};
 
 }//namespace ntrack_g

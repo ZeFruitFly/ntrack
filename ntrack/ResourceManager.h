@@ -22,6 +22,9 @@ namespace ntrack_g{
 		ResourceManager();
 		~ResourceManager();
 
+	private:
+		list < Resource*> Resources;
+
 	};
 
 }//namespace ntrack_g

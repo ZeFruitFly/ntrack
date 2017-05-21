@@ -4,6 +4,17 @@ extern "C" {
 # include "lauxlib.h"
 # include "lualib.h"
 }
+
+#include <irrlicht.h>
+
+using namespace irr;
+using namespace core;
+using namespace video;
+using namespace scene;
+using namespace gui;
+using namespace io;
+using namespace quake3;
+
 namespace ntrack_g{
 	namespace ntrack_lua{
 		class Player
@@ -13,10 +24,17 @@ namespace ntrack_g{
 			~Player();
 
 			void setPos(int x, int y, int z);
+			void setName(stringw);
+
+		private:
+			stringw name;
+			ICameraSceneNode *PlayerCamera;
 		};
 		int L_Server_Player_Constructor(lua_State *);
 
 		int L_Server_Player_setPos(lua_State *);
+
+		int L_Server_Player_setName(lua_State *);
 
 		void L_Server_Player_RegLua(lua_State *);
 

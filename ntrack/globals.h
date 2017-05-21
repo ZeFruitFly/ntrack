@@ -21,6 +21,7 @@ namespace ntrack_g{
 		IGUIEnvironment *guienv;
 		IFileSystem *fs;
 		ResourceManager *rmgr;
+		ILogger *logger;
 	};
 	extern globals globaldefs;
 }//namespace ntrack_g

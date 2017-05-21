@@ -42,7 +42,7 @@ namespace ntrack_g{
 
 	void NetworkManager::run()
 	{
-
+		//PSEUDO: IF (DED) receive from all ELSE IF (CLI) receive from server.
 	}
 
 }//namespace ntrack_g

@@ -6,5 +6,11 @@ INFO: Currently available Video Memory (kB): 2018304
 INFO: Resizing window (800 600)
 INFO: Resetting D3D9 device.
 INFO: Initiated Resource Manager
+DEBUG: Creating new resource...
+DEBUG: We've gotten to Resource::Resource()
+DEBUG: Directory changed without grief
+DEBUG: meta.xml loaded without issues
 INFO: Found XML comment in meta.xml
-INFO: Loading map
+INFO: meta
+INFO: info
+INFO: deathmatch

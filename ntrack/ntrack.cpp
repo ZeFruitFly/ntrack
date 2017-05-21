@@ -66,6 +66,12 @@ namespace ntrack_g{
 			throw "Something is seriously wrong: getFileSystem()";
 			return;
 		}
+		globaldefs.logger = globaldefs.game->getLogger();
+		if (globaldefs.logger == NULL)
+		{
+			throw "Something is seriously wrong: getLogger()";
+			return;
+		}
 		globaldefs.rmgr = new ResourceManager();
 		run();
 

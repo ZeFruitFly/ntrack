@@ -1,15 +1,95 @@
 #include "Resource.h"
 #include "globals.h"
 namespace ntrack_g{
-	Resource::Resource(path theFile, bool autoStart=false)
+	Resource::Resource(path theFile)
 	{
-		if (autoStart)
-		{
-			start();
-		}
+		globaldefs.logger->log(L"We've gotten to Resource::Resource()", ELL_DEBUG);
 		if (theFile.empty())
 		{
 			//NULL filename
+		}
+		//TODO: Open meta.xml and such process and load resources.
+		if (!globaldefs.game->getFileSystem()->changeWorkingDirectoryTo(theFile))
+		{ 
+			//Could not navigate to working directory
+		}
+		else
+		{
+			globaldefs.logger->log(L"Directory changed without grief", ELL_DEBUG);
+			IXMLReader *metaReader = globaldefs.game->getFileSystem()->createXMLReader("meta.xml");
+			if (metaReader == NULL)
+			{
+				//ERROR
+				stringw error = "meta.xml not found in folder: ";
+				error += globaldefs.game->getFileSystem()->getWorkingDirectory();
+				globaldefs.logger->log(error.c_str(), ELL_WARNING);
+			}
+			else
+			{
+				globaldefs.logger->log(L"meta.xml loaded without issues", ELL_DEBUG);
+				stringw infoTag = "info";
+				stringw metaTag = "meta";
+				stringw mapTag = "map";
+				//Glitch city this must recontemplate this whole setup.
+				
+				while (metaReader->read())
+				{
+								switch (metaReader->getNodeType())
+								{
+								case EXN_CDATA:
+									break;
+								case EXN_COMMENT:
+									globaldefs.game->getLogger()->log("Found XML comment in meta.xml");
+									break;
+								case EXN_ELEMENT:
+									globaldefs.logger->log(metaReader->getNodeName());
+									if (infoTag.equals_ignore_case(metaReader->getNodeName()))
+									{
+										//Gather our info here.
+										name = metaReader->getAttributeValue(L"name");
+										if (name.empty())
+										{
+											//Empty name field
+											globaldefs.logger->log("Resource name field empty.", ELL_WARNING);
+											name = "unknown";
+										}
+										globaldefs.logger->log(name.c_str());
+										stringw version = metaReader->getAttributeValue(L"version");
+										if (version.empty())
+										{
+											stringw error = "Resource "; 
+											error += name;
+											error += " is missing version info";
+											globaldefs.logger->log(error.c_str(), ELL_WARNING);
+										}
+										stringw author = metaReader->getAttributeValue(L"author");
+										if (author.empty())
+										{
+											stringw error = "Resource ";
+											error += name;
+											error += "is missing an author"; 
+										}
+									}
+									if (mapTag.equals_ignore_case(metaReader->getNodeName()))
+									{
+										//We've found a map
+										//TODO: Determain if it's an xml or json
+									}
+									break;
+								case EXN_ELEMENT_END:
+									break;
+								case EXN_NONE:
+									break;
+								case EXN_TEXT:
+									break;
+								}
+							
+							
+						}
+					
+				
+			}
+
 		}
 	}
 
@@ -17,32 +97,6 @@ namespace ntrack_g{
 	Resource::~Resource()
 	{
 		stop();
-	}
-
-	//A usefull bit to avoid searching for uneeded bits thus saving some performance. :P
-	bool Resource::hasSpawnPoint()
-	{
-		return spawnpoints.empty();
-	}
-
-	bool Resource::hasMap()
-	{
-		return maps.empty();
-	}
-
-	bool Resource::hasMesh()
-	{
-		return meshs.empty();
-	}
-
-	bool Resource::hasTexture()
-	{
-		return textures.empty();
-	}
-
-	bool Resource::hasScript()
-	{
-		return scripts_Client.empty() || scripts_Server.empty();
 	}
 
 	void Resource::addSpawnPoint(vector3d<s32> point)
@@ -211,6 +265,40 @@ namespace ntrack_g{
 		start();
 
 		stop();
+	}
+
+	inline void Resource::setName(stringw a)
+	{
+		name = a;
+	}
+	inline void setDescription(stringw)
+	{
+
+	}
+	inline void setVersion(stringw)
+	{
+
+	}
+	inline void setType(stringw)
+	{
+
+	}
+
+	inline stringw Resource::getName()
+	{
+		return name;
+	}
+	inline stringw Resource::getDescription()
+	{
+
+	}
+	inline stringw Resource::getVersion()
+	{
+
+	}
+	inline stringw Resource::getType()
+	{
+
 	}
 
 }//namespace ntrack_g

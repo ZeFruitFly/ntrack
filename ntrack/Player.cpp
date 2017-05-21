@@ -23,12 +23,18 @@ namespace ntrack_g{
 		{
 			return 0;
 		}
+		int L_Server_Player_setName(lua_State *L_Server)
+		{
+			return 0;
+		}
 		void L_Server_Player_RegLua(lua_State *L_Server)
 		{
 			luaL_Reg sPlayerRegs[] =
 			{
 				{ "new", L_Server_Player_Constructor },
-				{ "getPosition", L_Server_Player_setPos},
+				{ "setPosition", L_Server_Player_setPos},
+				{ "setName", L_Server_Player_setName },
+				{ "__gc", L_Server_Player_Destructor },
 				{ NULL, NULL}
 			};
 

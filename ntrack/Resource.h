@@ -21,18 +21,12 @@ namespace ntrack_g{
 	class Resource
 	{
 	public:
-		Resource(path, bool);
+		Resource(path);
 		~Resource();
 
 		void start();//Needs to load in resources
 		void stop();//Needs to unload uneeded resources
 		inline void restart();//Calls start() then stop()
-
-		bool hasSpawnPoint();
-		bool hasMap();
-		bool hasMesh();
-		bool hasTexture();
-		bool hasScript();
 
 		void addSpawnPoint(vector3d<s32>);
 		void addMap(path);
@@ -40,6 +34,15 @@ namespace ntrack_g{
 		void addTexture(path);
 		void addScript(path, char);
 
+		inline void setName(stringw);
+		inline void setDescription(stringw);
+		inline void setVersion(stringw);
+		inline void setType(stringw);
+
+		inline stringw getName();
+		inline stringw getDescription();
+		inline stringw getVersion();
+		inline stringw getType();
 
 	private:
 		bool running;
@@ -49,17 +52,10 @@ namespace ntrack_g{
 		list<path> textures;
 		list<path> scripts_Client, scripts_Server;
 
-		enum
-		{
-			map = 0,
-			mesh = 1,
-			texture = 2,
-			script = 3
-		};
-
+		
 		lua_State *L_Client = NULL, *L_Server = NULL;
 
-		stringw name, description, version;
+		stringw name, description, version, type;
 	};
 
 }//namespace ntrack_g

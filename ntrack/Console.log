@@ -6,11 +6,22 @@ INFO: Currently available Video Memory (kB): 2018304
 INFO: Resizing window (800 600)
 INFO: Resetting D3D9 device.
 INFO: Initiated Resource Manager
+INFO: Loaded 0 Resources.
+INFO: Loaded 0 Resources.
 DEBUG: Creating new resource...
 DEBUG: We've gotten to Resource::Resource()
 DEBUG: Directory changed without grief
 DEBUG: meta.xml loaded without issues
 INFO: Found XML comment in meta.xml
-INFO: meta
-INFO: info
-INFO: deathmatch
+INFO: Loaded resource: deathmatch
+INFO: Loaded 1 Resources.
+DEBUG: Creating new resource...
+DEBUG: We've gotten to Resource::Resource()
+DEBUG: Directory changed without grief
+DEBUG: meta.xml loaded without issues
+INFO: Found XML comment in meta.xml
+INFO: Loaded resource: freeroam
+INFO: Loaded 2 Resources.
+DEBUG: Dumping loaded resources
+DEBUG: deathmatch
+DEBUG: freeroam

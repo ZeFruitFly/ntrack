@@ -39,7 +39,7 @@ namespace ntrack_g{
 		inline void setVersion(stringw);
 		inline void setType(stringw);
 
-		inline stringw getName();
+		stringw getName();
 		inline stringw getDescription();
 		inline stringw getVersion();
 		inline stringw getType();

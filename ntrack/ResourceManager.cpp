@@ -67,7 +67,18 @@ namespace ntrack_g{
 
 				}
 				globaldefs.game->getFileSystem()->changeWorkingDirectoryTo(resourceDir);
+				
 			}
+		}
+		stringw output = "Finished Loading ";
+		output += Resources.getSize();
+		output += " Resources.";
+		globaldefs.logger->log(output.c_str(), ELL_INFORMATION);
+		globaldefs.logger->log(L"Dumping loaded resources", ELL_DEBUG);
+		for (list< Resource*>::Iterator it = Resources.begin(); it != Resources.end(); it++)
+		{
+			Resource* temp = *it;
+			globaldefs.logger->log(temp->getName().c_str(), ELL_DEBUG);
 		}
 
 	}

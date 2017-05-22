@@ -42,7 +42,7 @@ namespace ntrack_g{
 									globaldefs.game->getLogger()->log("Found XML comment in meta.xml");
 									break;
 								case EXN_ELEMENT:
-									globaldefs.logger->log(metaReader->getNodeName());
+									
 									if (infoTag.equals_ignore_case(metaReader->getNodeName()))
 									{
 										//Gather our info here.
@@ -53,7 +53,6 @@ namespace ntrack_g{
 											globaldefs.logger->log("Resource name field empty.", ELL_WARNING);
 											name = "unknown";
 										}
-										globaldefs.logger->log(name.c_str());
 										stringw version = metaReader->getAttributeValue(L"version");
 										if (version.empty())
 										{
@@ -284,7 +283,7 @@ namespace ntrack_g{
 
 	}
 
-	inline stringw Resource::getName()
+	stringw Resource::getName()
 	{
 		return name;
 	}

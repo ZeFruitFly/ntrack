@@ -1,4 +1,4 @@
-﻿Build started 5/21/2017 6:28:48 PM.
+﻿Build started 5/22/2017 12:06:45 AM.
      1>Project "C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\ntrack\ntrack.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\rapidjson-master\include" /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\lua-5.3.3\src" /I"C:\Users\Nathan\Documents\GitHub\VirtueDev\ntrack\Libs\irrlicht-1.8.4\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Resource.cpp ResourceManager.cpp
@@ -21,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:11.10
+Time Elapsed 00:00:04.53
